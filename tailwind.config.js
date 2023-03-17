@@ -1,13 +1,12 @@
-  // tailwind.config.js
-  module.exports = {
-    purge: [],
-    purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-    darkMode: false, // or 'media' or 'class'
-    theme: {
-      extend: {},
-    },
-    variants: {
-      extend: {},
-    },
-    plugins: [],
-  }
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx,vue,html}'],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
