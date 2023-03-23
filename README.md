@@ -1,14 +1,105 @@
-# chatGPT
-基于 laf 开发的 chatGPT 免费 免登录 免翻墙 点击开聊   
-在线地址 https://jyf6wk-chat-gpt.site.laf.dev    
-如何开发属于自己的 chatGPT ？ 参考 [三分钟拥有自己的 ChatGPT (从开发到上线)](https://zuofeng59556.github.io/my-blog/pages/quickStart/chatGPT/)
+# Chatbot UI
 
-## 运行项目
+**Note: Chatbot UI Pro has been renamed to Chatbot UI.**
+
+Chatbot UI is an advanced chatbot kit for OpenAI's chat models built on top of [Chatbot UI Lite](https://github.com/mckaywrigley/chatbot-ui-lite) using Next.js, TypeScript, and Tailwind CSS.
+
+It aims to mimic ChatGPT's interface and functionality.
+
+All conversations are stored locally on your device.
+
+See a [demo](https://twitter.com/mckaywrigley/status/1636103188733640704).
+
+![Chatbot UI](./public/screenshot.png)
+
+## Updates
+
+Chatbot UI will be updated over time.
+
+Expect frequent improvements.
+
+**Next up:**
+
+- [ ] More custom settings
+- [ ] Regenerate & edit responses
+- [ ] Folders
+- [ ] Prompt templates
+
+**Recent updates:**
+
+- [x] Search chat content (3/23/23)
+- [x] Stop message generation (3/22/23)
+- [x] Import/Export chats (3/22/23)
+- [x] Custom system prompt (3/21/23)
+- [x] Error handling (3/20/23)
+- [x] GPT-4 support (access required) (3/20/23)
+- [x] Search conversations (3/19/23)
+- [x] Code syntax highlighting (3/18/23)
+- [x] Toggle sidebar (3/18/23)
+- [x] Conversation naming (3/18/23)
+- [x] Github flavored markdown (3/18/23)
+- [x] Add OpenAI API key in app (3/18/23)
+- [x] Markdown support (3/17/23)
+
+## Modifications
+
+Modify the chat interface in `components/Chat`.
+
+Modify the sidebar interface in `components/Sidebar`.
+
+Modify the system prompt in `utils/index.ts`.
+
+## Deploy
+
+**Vercel**
+
+Host your own live version of Chatbot UI with Vercel.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmckaywrigley%2Fchatbot-ui)
+
+**Replit**
+
+Fork Chatbot UI on Replit [here](https://replit.com/@MckayWrigley/chatbot-ui-pro?v=1).
+
+**Docker**
+
+```shell
+docker build -t chatgpt-ui .
+docker run -e OPENAI_API_KEY=xxxxxxxx -p 3000:3000 chatgpt-ui
 ```
+
+## Running Locally
+
+**1. Clone Repo**
+
+```bash
+git clone https://github.com/mckaywrigley/chatbot-ui.git
+```
+
+**2. Install Dependencies**
+
+```bash
 npm i
+```
+
+**3. Provide OpenAI API Key**
+
+Create a .env.local file in the root of the repo with your OpenAI API Key:
+
+```bash
+OPENAI_API_KEY=YOUR_KEY
+```
+
+**4. Run App**
+
+```bash
 npm run dev
 ```
-## 示例
-![alt 属性文本](https://oss.laf.dev/in8dn4-image/1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=653C1AUO2RJHDRT042DK%2F20230313%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230313T015058Z&X-Amz-Expires=900&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiI2NTNDMUFVTzJSSkhEUlQwNDJESyIsImV4cCI6MTY3OTI3NzAyOCwicGFyZW50IjoiaW44ZG40Iiwic2Vzc2lvblBvbGljeSI6ImV5SldaWEp6YVc5dUlqb2lNakF4TWkweE1DMHhOeUlzSWxOMFlYUmxiV1Z1ZENJNlczc2lVMmxrSWpvaVlYQndMWE4wY3kxbWRXeHNMV2R5WVc1MElpd2lSV1ptWldOMElqb2lRV3hzYjNjaUxDSkJZM1JwYjI0aU9pSnpNem9xSWl3aVVtVnpiM1Z5WTJVaU9pSmhjbTQ2WVhkek9uTXpPam82S2lKOVhYMD0ifQ.BpzY44zcjWsOJ7pZesaMfVh2Ay2dIkfq62UBi5iQyvSLSKaZMeGREpTavIyj1hj5OVdMV730zvaXv1eMvKZOPw&X-Amz-Signature=fae5d99398b2ed06dc66003882623a15f38705b40c092af825ac78e71df51dde&X-Amz-SignedHeaders=host)   
 
-![alt 属性文本](https://oss.laf.dev/in8dn4-image/2.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=653C1AUO2RJHDRT042DK%2F20230313%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230313T015237Z&X-Amz-Expires=900&X-Amz-Security-Token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiI2NTNDMUFVTzJSSkhEUlQwNDJESyIsImV4cCI6MTY3OTI3NzAyOCwicGFyZW50IjoiaW44ZG40Iiwic2Vzc2lvblBvbGljeSI6ImV5SldaWEp6YVc5dUlqb2lNakF4TWkweE1DMHhOeUlzSWxOMFlYUmxiV1Z1ZENJNlczc2lVMmxrSWpvaVlYQndMWE4wY3kxbWRXeHNMV2R5WVc1MElpd2lSV1ptWldOMElqb2lRV3hzYjNjaUxDSkJZM1JwYjI0aU9pSnpNem9xSWl3aVVtVnpiM1Z5WTJVaU9pSmhjbTQ2WVhkek9uTXpPam82S2lKOVhYMD0ifQ.BpzY44zcjWsOJ7pZesaMfVh2Ay2dIkfq62UBi5iQyvSLSKaZMeGREpTavIyj1hj5OVdMV730zvaXv1eMvKZOPw&X-Amz-Signature=541a4da6ea919b4bde1a6f9b654a7c4b263d0f6cde110c7fcabf046d363ffa7f&X-Amz-SignedHeaders=host)   
+**5. Use It**
+
+You should be able to start chatting.
+
+## Contact
+
+If you have any questions, feel free to reach out to me on [Twitter](https://twitter.com/mckaywrigley).
