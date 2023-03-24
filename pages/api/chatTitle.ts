@@ -12,7 +12,7 @@ const handler = async (req: Request): Promise<Response> => {
       model: OpenAIModel,
       messages: Message[]
     };
-    const prompt = `Please generate a title for the following conversation`
+    const prompt = `Please generate a title for the following conversation, less than 10 words`
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: 'POST',
@@ -30,7 +30,7 @@ const handler = async (req: Request): Promise<Response> => {
           ...messages
         ],
         temperature: 0.8,
-        max_tokens: 10,
+        max_tokens: 20,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,

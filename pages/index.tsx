@@ -152,7 +152,7 @@ export default function Home() {
         ).then(customName => {
           updatedConversation = {
             ...updatedConversation,
-            name: customName
+            name: customName.replace(/\"/g, '')
           };
         });
       }
