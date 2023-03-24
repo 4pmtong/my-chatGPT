@@ -142,6 +142,21 @@ export default function Home() {
         }
       }
 
+      if (updatedConversation.messages.length === 2) {
+        const {content} = updatedConversation.messages[0]        
+        await fetchChatTitle(
+          updatedConversation.model,
+          apiKey,
+          updatedConversation.messages,
+          content
+        ).then(customName => {
+          updatedConversation = {
+            ...updatedConversation,
+            name: customName
+          };
+        });
+      }
+
       saveConversation(updatedConversation);
 
       const updatedConversations: Conversation[] = conversations.map((conversation) => {
@@ -190,6 +205,34 @@ export default function Home() {
     setModels(data);
     setModelError(false);
   };
+
+  const fetchChatTitle = async (model: OpenAIModel, key: string, messages: Message[], content: string) => { 
+   const customName = content.length > 30 ? content.substring(0, 30) + "..." : content;
+    const response = await fetch("/api/chatTitle", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        key,
+        model,
+        messages,
+      })
+    });
+
+
+    if (!response.ok) {
+      return customName;
+    }
+
+    const data = await response.json();
+
+    if (!data) {
+      return customName;
+    }
+
+    return data;
+  }
 
   const handleLightMode = (mode: "dark" | "light") => {
     setLightMode(mode);
