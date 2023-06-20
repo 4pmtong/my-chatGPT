@@ -18,12 +18,13 @@ export const OpenAIStream = async (model: OpenAIModel, systemPrompt: string, key
         ...messages
       ],
       max_tokens: 1000,
-      stream: true
+      stream: true,
+      temperature: 0.2
     })
   });
 
   if (res.status !== 200) {
-    const statusText = res.statusText; 
+    const statusText = res.statusText;
     throw new Error(`OpenAI API returned an error: ${statusText}`);
   }
 
