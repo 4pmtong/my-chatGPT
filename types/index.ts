@@ -39,6 +39,7 @@ export interface ChatBody {
   messages: Message[];
   key: string;
   prompt: string;
+  temperature: number;
 }
 
 export interface KeyValuePair {

@@ -22,6 +22,7 @@ export default function Home() {
   const [messageError, setMessageError] = useState<boolean>(false);
   const [modelError, setModelError] = useState<boolean>(false);
   const stopConversationRef = useRef<boolean>(false);
+  const [temperature, setTemperature] = useState<number>(1);
 
   const handleSend = async (message: Message, isResend: boolean) => {
     if (selectedConversation) {
@@ -51,7 +52,8 @@ export default function Home() {
         model: updatedConversation.model,
         messages: updatedConversation.messages,
         key: apiKey,
-        prompt: updatedConversation.prompt
+        prompt: updatedConversation.prompt,
+        temperature: temperature,
       };
 
       const controller = new AbortController();
@@ -82,7 +84,7 @@ export default function Home() {
       }
 
       if (updatedConversation.messages.length === 1) {
-        const {content} = message
+        const { content } = message
         const customName = content.length > 30 ? content.substring(0, 30) + "..." : content;
 
         updatedConversation = {
@@ -143,7 +145,7 @@ export default function Home() {
       }
 
       if (updatedConversation.messages.length === 2) {
-        const {content} = updatedConversation.messages[0]        
+        const { content } = updatedConversation.messages[0]
         await fetchChatTitle(
           updatedConversation.model,
           apiKey,
@@ -206,8 +208,8 @@ export default function Home() {
     setModelError(false);
   };
 
-  const fetchChatTitle = async (model: OpenAIModel, key: string, messages: Message[], content: string) => { 
-   const customName = content.length > 30 ? content.substring(0, 30) + "..." : content;
+  const fetchChatTitle = async (model: OpenAIModel, key: string, messages: Message[], content: string) => {
+    const customName = content.length > 30 ? content.substring(0, 30) + "..." : content;
     const response = await fetch("/api/chatTitle", {
       method: "POST",
       headers: {
@@ -243,6 +245,10 @@ export default function Home() {
     setApiKey(apiKey);
     localStorage.setItem("apiKey", apiKey);
   };
+
+  const handleTemperatureChange = (temperature: number) => {
+    setTemperature(temperature);
+  }
 
   const handleExportConversations = () => {
     exportConversations();
@@ -412,6 +418,8 @@ export default function Home() {
                   lightMode={lightMode}
                   selectedConversation={selectedConversation}
                   apiKey={apiKey}
+                  temperature={temperature}
+                  onTemperatureChange={handleTemperatureChange}
                   onToggleLightMode={handleLightMode}
                   onNewConversation={handleNewConversation}
                   onSelectConversation={handleSelectConversation}

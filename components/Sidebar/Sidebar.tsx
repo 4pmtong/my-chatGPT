@@ -11,6 +11,7 @@ interface Props {
   lightMode: "light" | "dark";
   selectedConversation: Conversation;
   apiKey: string;
+  temperature: number;
   onNewConversation: () => void;
   onToggleLightMode: (mode: "light" | "dark") => void;
   onSelectConversation: (conversation: Conversation) => void;
@@ -18,12 +19,13 @@ interface Props {
   onToggleSidebar: () => void;
   onUpdateConversation: (conversation: Conversation, data: KeyValuePair) => void;
   onApiKeyChange: (apiKey: string) => void;
+  onTemperatureChange: (temperature: number) => void;
   onClearConversations: () => void;
   onExportConversations: () => void;
   onImportConversations: (conversations: Conversation[]) => void;
 }
 
-export const Sidebar: FC<Props> = ({ loading, conversations, lightMode, selectedConversation, apiKey, onNewConversation, onToggleLightMode, onSelectConversation, onDeleteConversation, onToggleSidebar, onUpdateConversation, onApiKeyChange, onClearConversations, onExportConversations, onImportConversations }) => {
+export const Sidebar: FC<Props> = ({ loading, conversations, lightMode, selectedConversation, apiKey, temperature, onNewConversation, onToggleLightMode, onSelectConversation, onDeleteConversation, onToggleSidebar, onUpdateConversation, onApiKeyChange, onTemperatureChange, onClearConversations, onExportConversations, onImportConversations }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredConversations, setFilteredConversations] = useState<Conversation[]>(conversations);
 
@@ -90,8 +92,10 @@ export const Sidebar: FC<Props> = ({ loading, conversations, lightMode, selected
       <SidebarSettings
         lightMode={lightMode}
         apiKey={apiKey}
+        temperature={temperature}
         onToggleLightMode={onToggleLightMode}
         onApiKeyChange={onApiKeyChange}
+        onTemperatureChange={onTemperatureChange}
         onClearConversations={onClearConversations}
         onExportConversations={onExportConversations}
         onImportConversations={onImportConversations}

@@ -1,7 +1,7 @@
 import { Message, OpenAIModel } from "@/types";
 import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
 
-export const OpenAIStream = async (model: OpenAIModel, systemPrompt: string, key: string, messages: Message[]) => {
+export const OpenAIStream = async (model: OpenAIModel, systemPrompt: string, key: string, messages: Message[], temperature: number) => {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const OpenAIStream = async (model: OpenAIModel, systemPrompt: string, key
       ],
       max_tokens: 1000,
       stream: true,
-      temperature: 0.2
+      temperature: temperature ? temperature : 0.2
     })
   });
 
