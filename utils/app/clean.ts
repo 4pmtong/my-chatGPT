@@ -11,7 +11,7 @@ export const cleanSelectedConversation = (conversation: Conversation) => {
   if (!updatedConversation.model) {
     updatedConversation = {
       ...updatedConversation,
-      model: OpenAIModels[OpenAIModelID.GPT_3_5]
+      model: OpenAIModels[OpenAIModelID.GPT_4]
     };
   }
 
@@ -36,7 +36,7 @@ export const cleanConversationHistory = (history: Conversation[]) => {
   if (!updatedHistory.every((conversation) => conversation.model)) {
     updatedHistory = updatedHistory.map((conversation) => ({
       ...conversation,
-      model: OpenAIModels[OpenAIModelID.GPT_3_5]
+      model: OpenAIModels[OpenAIModelID.GPT_4]
     }));
   }
 

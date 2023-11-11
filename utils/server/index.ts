@@ -23,6 +23,8 @@ export const OpenAIStream = async (model: OpenAIModel, systemPrompt: string, key
     })
   });
 
+  console.log("res======", res);
+
   if (res.status !== 200) {
     const statusText = res.statusText;
     throw new Error(`OpenAI API returned an error: ${statusText}`);
